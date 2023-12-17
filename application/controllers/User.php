@@ -25,13 +25,9 @@ class User extends CI_Controller
             'menu' => 'user'
         );
 
-        $this->load->view('admin/user', $data);
-    }
-
-    public function listdata()
-    {
         $data["user"] = $this->User_model->getAll();
-        $this->load->view("admin/user", $data);
+
+        $this->load->view('admin/user', $data);
     }
 
     public function add()

@@ -13,7 +13,7 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/datatables/datatables.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css"> -->
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/bootstrap-daterangepicker/daterangepicker.css">
 
@@ -84,9 +84,11 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="text-center">
-                                                    <?php foreach ($user as $key) { ?>
+                                                    <?php
+                                                    $no = 1;
+                                                    foreach ($user as $key) { ?>
                                                         <tr>
-                                                            <td style="text-align: center;"><?php echo $no++; ?></td>
+                                                            <td style="text-align: center;"><?= $no++; ?></td>
                                                             <td><?php echo $key->nip_nik; ?></td>
                                                             <td><?php echo $key->fullname; ?></td>
                                                             <td><?php echo $key->jabatan; ?></td>
@@ -299,7 +301,7 @@
 
     <!-- JS Libraies -->
     <script src="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script> -->
     <!-- <script src="<?php echo base_url(); ?>assets/modules/jquery-ui/jquery-ui.min.js"></script> -->
     <script src="<?php echo base_url(); ?>assets/modules/prism/prism.js"></script>
     <script src="<?php echo base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.js"></script>
