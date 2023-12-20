@@ -24,9 +24,6 @@ class Dashboard extends CI_Controller
         );
 
         $data['total_rows'] = $this->Login_model->countAll();
-
-
-
         $this->load->view('admin/dashboard', $data);
     }
 }

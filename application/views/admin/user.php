@@ -124,24 +124,28 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="post" id="form">
-                                <input type="hidden" id="id_anggota" name="id_anggota" value="">
+                            <form action="<?php echo site_url('user/add'); ?>" method="POST">
+                                <!-- <input type="hidden" id="id_anggota" name="id_anggota" value=""> -->
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Nomor Identitas</label>
-                                        <input type="text" class="form-control" name="nip_nik">
+                                        <input type="text" class="form-control" name="nip_nik" required autofocus>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="text" class="form-control" name="username">
+
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input type="text" class="form-control" name="password">
+
                                     </div>
                                     <div class="form-group">
                                         <label>Nama Lengkap</label>
                                         <input type="text" class="form-control" name="fullname">
+
                                     </div>
                                     <div class="form-group">
                                         <label>Pendidikan Tertinggi</label>
@@ -154,6 +158,7 @@
                                             <option value="Master">Master</option>
                                             <option value="Doctoral">Doctoral</option>
                                         </select>
+
                                     </div>
 
                                     <div class="form-group">
@@ -173,6 +178,7 @@
                                     <div class="form-group">
                                         <label>No Hp</label>
                                         <input type="text" class="form-control" name="nohp">
+
                                     </div>
                                     <div class="form-group">
                                         <label>Agama</label>
@@ -183,6 +189,7 @@
                                             <option value="Hindu">Hindu</option>
                                             <option value="Budha">Budha</option>
                                         </select>
+
                                     </div>
                                     <!-- <div class="form-group">
                                         <label>Hobi</label>
@@ -191,10 +198,12 @@
                                     <div class="form-group">
                                         <label>Hobi</label>
                                         <input type="text" class="form-control" name="hobi">
+
                                     </div>
                                     <div class="form-group">
                                         <label>Terhitung Mulai Tanggal Dinas</label>
                                         <input type="date" class="form-control" name="tmt_kerja">
+
                                     </div>
 
                                     <div class="form-group">
@@ -204,6 +213,7 @@
                                             <option value="Teknisi">Teknisi</option>
                                             <option value="IT">IT</option>
                                         </select>
+
                                     </div>
                                     <div class="form-group">
                                         <label>Unit</label>
@@ -212,11 +222,13 @@
                                             <option value="Sarpras">Sarpras</option>
                                             <option value="IT">IT</option>
                                         </select>
+
                                     </div>
 
                                     <div class="form-group mb-0">
                                         <label>Alamat</label>
                                         <textarea class="form-control" name="alamat"></textarea>
+
                                     </div>
 
                                     <div class="form-group">
@@ -227,6 +239,7 @@
                                             <option value="1">Admin</option>
                                             <option value="2">User</option>
                                         </select>
+
                                     </div>
 
                                     <div class="form-group">
@@ -248,6 +261,7 @@
                                     <div class="form-group">
                                         <label>Foto</label>
                                         <input type="file" class="form-control" name="foto">
+
                                     </div>
 
 
@@ -256,7 +270,7 @@
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success" id="btnSave" onclick="save()">Simpan</button>
+                            <button type="submit" class="btn btn-success" id="btnSave" onclick="save()">Simpan</button>
                         </div>
                     </div>
                 </div>
