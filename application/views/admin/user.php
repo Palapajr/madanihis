@@ -13,9 +13,6 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/datatables/datatables.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
-    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css"> -->
-
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/modules/bootstrap-daterangepicker/daterangepicker.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
@@ -71,7 +68,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped " id="table" width="100%">
+                                            <table class="table table-bordered table-md" id="table" width="100%">
                                                 <thead>
                                                     <tr class="text-center">
                                                         <th>No</th>
@@ -79,6 +76,7 @@
                                                         <th>Nama</th>
                                                         <th>Jabatan</th>
                                                         <th>Unit</th>
+                                                        <th>TMT</th>
                                                         <th>No Handphone</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -88,11 +86,12 @@
                                                     $no = 1;
                                                     foreach ($user as $key) { ?>
                                                         <tr>
-                                                            <td style="text-align: center;"><?= $no++; ?></td>
+                                                            <td><?= $no++; ?></td>
                                                             <td><?php echo $key->nip_nik; ?></td>
                                                             <td><?php echo $key->fullname; ?></td>
                                                             <td><?php echo $key->jabatan; ?></td>
                                                             <td><?php echo $key->unit; ?></td>
+                                                            <td><?php echo date('d M Y', strtotime($key->tmt_kerja)) ?></td> <!-- code tampil berdasar format tanggal -->
                                                             <td><?php echo $key->nope; ?></td>
                                                             <td style="text-align: center;">
                                                                 <a href="<?php echo base_url(); ?>user/edit/<?php echo $key->id_user; ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
@@ -315,18 +314,24 @@
 
     <!-- JS Libraies -->
     <script src="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.js"></script>
-    <!-- <script src="<?php echo base_url(); ?>assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script> -->
-    <!-- <script src="<?php echo base_url(); ?>assets/modules/jquery-ui/jquery-ui.min.js"></script> -->
-    <script src="<?php echo base_url(); ?>assets/modules/prism/prism.js"></script>
-    <script src="<?php echo base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="<?php echo base_url(); ?>assets/modules/izitoast/js/iziToast.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/page/modules-toastr.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/page/sweetalert.js"></script>
-
 
     <!-- Template JS File -->
     <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+
+    <script>
+        var tabelData = $('#table');
+
+        $(document).ready(function() {
+            tabelData.DataTable({ // -> tabel
+                "processing": true,
+                "columnDefs": [{
+                    "target": [-1],
+                    "orderable": false
+                }]
+            });
+        });
+    </script>
 
 </body>
 

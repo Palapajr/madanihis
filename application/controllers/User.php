@@ -22,12 +22,11 @@ class User extends CI_Controller
     {
         $data = array(
             'title' => "Data User",
-            'menu' => 'user'
+            'menu' => 'user',
+            'user' => $this->User_model->all_data()
         );
 
-        $data["user"] = $this->User_model->getAll();
-
-        $this->load->view('admin/user', $data);
+        $this->load->view('admin/user', $data, false);
     }
 
     public function add()

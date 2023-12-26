@@ -20,10 +20,10 @@ class Dashboard extends CI_Controller
         $data = array(
             'title' => "Dashboad Meta",
             'menu' => 'dashboard',
-
+            'total_rows' => $this->Login_model->countAll()
         );
 
-        $data['total_rows'] = $this->Login_model->countAll();
+
         $this->load->view('admin/dashboard', $data);
     }
 }
