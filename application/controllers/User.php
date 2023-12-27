@@ -36,7 +36,7 @@ class User extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|required', ['required' => '%s Tidak boleh kosong']);
         $this->form_validation->set_rules('fullname', 'Nama Kempanjangan', 'trim|required', ['required' => '%s Tidak boleh kosong']);
         $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'trim|required', ['required' => '%s Tidak boleh kosong']);
+        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'trim|required', ['required' => '%s Harus di isi']);
         $this->form_validation->set_rules('nope', 'Nomor Hp', 'trim|required', ['required' => '%s Tidak boleh kosong']);
         $this->form_validation->set_rules('agama', 'Agama', 'trim|required', ['required' => '%s Tidak boleh kosong']);
         $this->form_validation->set_rules('hobi', 'Hobi', 'trim|required', ['required' => '%s Tidak boleh kosong']);
@@ -47,14 +47,19 @@ class User extends CI_Controller
         $this->form_validation->set_rules('user_akses', 'Akses User', 'trim|required', ['required' => '%s Tidak boleh kosong']);
         $this->form_validation->set_rules('user_status', 'User Status', 'trim|required', ['required' => '%s Tidak boleh kosong']);
 
+
         if ($this->form_validation->run() == FALSE) {
 
-            $this->session->set_flashdata('alert', 'Tidak dapat di proses, mohon lengkapi form pengisian');
-            redirect('admin/user');
+            $data = array(
+                'title' => "Tambah User",
+                'menu' => 'user'
+            );
+
+            $this->load->view('admin/form_user', $data, false);
         } else {
 
-            $this->session->set_flashdata('alert', 'data Berhasil di Tambahkan');
-            $this->load->view("admin/user");
+            // $this->session->set_flashdata('alert', 'data Berhasil di Tambahkan');
+            // $this->load->view("admin/user");
         }
     }
 
