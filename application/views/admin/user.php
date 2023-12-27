@@ -73,12 +73,9 @@
                                                 <thead>
                                                     <tr class="text-center">
                                                         <th>No</th>
-                                                        <th>NPK/NIP</th>
                                                         <th>Nama</th>
-                                                        <th>Jabatan</th>
-                                                        <th>Unit</th>
-                                                        <th>TMT</th>
-                                                        <th>No Handphone</th>
+                                                        <th>User Akses</th>
+                                                        <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -88,14 +85,27 @@
                                                     foreach ($user as $key) { ?>
                                                         <tr>
                                                             <td><?= $no++; ?></td>
-                                                            <td><?php echo $key->nip_nik; ?></td>
                                                             <td><?php echo $key->fullname; ?></td>
-                                                            <td><?php echo $key->jabatan; ?></td>
-                                                            <td><?php echo $key->unit; ?></td>
-                                                            <td><?php echo date('d M Y', strtotime($key->tmt_kerja)) ?></td> <!-- code tampil berdasar format tanggal -->
-                                                            <td><?php echo $key->nope; ?></td>
+                                                            <td>
+                                                                <?php $akses = $key->user_akses;
+                                                                if ($akses == '1') { ?>
+                                                                    <div class="badge badge-info">Administrator</div>
+                                                                <?php } else { ?>
+                                                                    <div class="badge badge-danger">Inactive</div>
+                                                                <?php } ?>
+                                                            </td>
+
+                                                            <td>
+                                                                <?php $status = $key->user_status;
+                                                                if ($status == '1') { ?>
+                                                                    <div class="badge badge-success">Active</div>
+                                                                <?php } else { ?>
+                                                                    <div class="badge badge-danger">Inactive</div>
+                                                                <?php } ?>
+                                                            </td>
+                                                            <!-- <td><?php echo date('d M Y', strtotime($key->tmt_kerja)) ?></td> code tampil berdasar format tanggal -->
                                                             <td style="text-align: center;">
-                                                                <a href="<?php echo base_url(); ?>user/edit/<?php echo $key->id_user; ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                                                <a href="<?php echo base_url(); ?>user/detail/<?php echo $key->id_user; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
                                                                 <a href="<?php echo base_url(); ?>user/delete/<?php echo $key->id_user; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                                             </td>
                                                         </tr>
