@@ -14,7 +14,7 @@ class User extends CI_Controller
             redirect($url);
         };
 
-        $this->load->model("User_model");
+        $this->load->model(['User_model', 'Users_model']);
         $this->load->library('form_validation');
     }
 
@@ -31,26 +31,36 @@ class User extends CI_Controller
 
     public function add()
     {
-        $this->form_validation->set_rules('id_users', 'User', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-        $this->form_validation->set_rules('username', 'Username', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-        $this->form_validation->set_rules('password', 'Password', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-        $this->form_validation->set_rules('fullname', 'Nama Kempanjangan', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-        $this->form_validation->set_rules('user_akses', 'Akses User', 'trim|required', ['required' => '%s Tidak boleh kosong']);
-        $this->form_validation->set_rules('user_status', 'User Status', 'trim|required', ['required' => '%s Tidak boleh kosong']);
+        $this->form_validation->set_rules('id_users', 'Nama User', 'required', ['required' => '%s Tidak boleh kosong']);
+        $this->form_validation->set_rules('username', 'Username', 'required', ['required' => '%s Tidak boleh kosong']);
+        $this->form_validation->set_rules('password', 'Password', 'required', ['required' => '%s Tidak boleh kosong']);
+        $this->form_validation->set_rules('fullname', 'Nama Kempanjangan', 'required', ['required' => '%s Tidak boleh kosong']);
+        $this->form_validation->set_rules('user_akses', 'Akses User', 'required', ['required' => '%s Tidak boleh kosong']);
+        $this->form_validation->set_rules('user_status', 'User Status', 'required', ['required' => '%s Tidak boleh kosong']);
 
 
         if ($this->form_validation->run() == FALSE) {
 
             $data = array(
                 'title' => "Tambah User",
-                'menu' => 'user'
+                'menu' => 'user',
+                'users' => $this->Users_model->all_data()
             );
 
             $this->load->view('admin/form_user', $data, false);
         } else {
 
-            // $this->session->set_flashdata('alert', 'data Berhasil di Tambahkan');
-            // $this->load->view("admin/user");
+            $data = array(
+                'id_users' => $this->input->post('id_users'),
+                'username' => $this->input->post('username'),
+                'password' => hash('sha2', $this->input->post('password')),
+                'fullname' => $this->input->post('fullname'),
+                'user_akses' => $this->input->post('user_akses'),
+                'user_status' => $this->input->post('user_status')
+            );
+
+            $this->User_model->insert_data();
+            redirect('admin/user');
         }
     }
 

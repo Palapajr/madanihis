@@ -10,8 +10,13 @@ class User_model extends CI_Model
         $this->db->from('user');
         return $this->db->get()->result();
     }
-    
+
+    public function insert_data($data)
+    {
+        $this->db->insert('user', $data);
+    }
 }
+
 
 
     // private $_table = "user";
